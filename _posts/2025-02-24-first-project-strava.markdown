@@ -128,8 +128,8 @@ Step 9: Connect with Strava
     grafana>connections>add new connection>strava >install > add new data
   	fill in the credential based on the strava api
     
-    Client ID: 149897
-    Client Sec: e5920c83b8050cff004e3ea6213fe9cef84bc866
+    Client ID: <Client_ID>
+    Client Sec: <Client_Sec>
 
 Step 10: To make your Grafana dashboard accessible via a URL with Ingress, TLS, and DNS, follow these steps:
 
