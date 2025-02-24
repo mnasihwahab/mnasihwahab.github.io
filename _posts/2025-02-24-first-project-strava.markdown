@@ -147,30 +147,30 @@ Verify the Ingress Controller:
 
 Create an Ingress resource:
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: grafana-ingress
-  namespace: monitoring
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-spec:
-  tls:
-  - hosts:
-    - grafana.example.com
-    secretName: grafana-tls
-  rules:
-  - host: grafana.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: grafana
-            port:
-              number: 80
+	apiVersion: networking.k8s.io/v1
+	kind: Ingress
+	metadata:
+	  name: grafana-ingress
+	  namespace: monitoring
+	  annotations:
+	    nginx.ingress.kubernetes.io/rewrite-target: /
+	    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+	spec:
+	  tls:
+	  - hosts:
+	    - grafana.example.com
+	    secretName: grafana-tls
+	  rules:
+	  - host: grafana.example.com
+	    http:
+	      paths:
+	      - path: /
+	        pathType: Prefix
+	        backend:
+	          service:
+	            name: grafana
+	            port:
+	              number: 80
               
 Apply the Ingress resource:
 
@@ -184,20 +184,20 @@ Install Cert-Manager:
 
 Create a ClusterIssuer for Let's Encrypt:
 
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-prod
-spec:
-  acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: your-email@example.com
-    privateKeySecretRef:
-      name: letsencrypt-prod
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
+	apiVersion: cert-manager.io/v1
+	kind: ClusterIssuer
+	metadata:
+	  name: letsencrypt-prod
+	spec:
+	  acme:
+	    server: https://acme-v02.api.letsencrypt.org/directory
+	    email: your-email@example.com
+	    privateKeySecretRef:
+	      name: letsencrypt-prod
+	    solvers:
+	    - http01:
+	        ingress:
+	          class: nginx
           
 Apply the ClusterIssuer:
 
